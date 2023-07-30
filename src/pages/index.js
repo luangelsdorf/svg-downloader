@@ -41,7 +41,8 @@ export default function Home() {
 
       <style jsx global>{`
         svg {
-          fill: white
+          fill: white;
+          height: 100%;
         }
       `}</style>
 
@@ -49,8 +50,8 @@ export default function Home() {
 
         <Container>
           <Row className="justify-content-center">
-            <Col xs="8" lg="6" xg="4">
-              <Form onSubmit={handleSubmit}>
+            <Col xs="8" lg="6">
+              <Form onSubmit={handleSubmit} className="my-5">
                 <Form.Label>Variante</Form.Label>
                 <Form.Group className="mb-3">
                   <Form.Select required>
@@ -72,19 +73,36 @@ export default function Home() {
                 </Button>
               </Form>
 
-              <h1 className="my-5">Preview:</h1>
-              <Row>
-                <Col md="10" lg="8" xl="6">
+              <Row className="justify-content-between">
+                <Col className="h-100" md="10" lg="8" xl="5">
                   <div className="mb-4">
+                    <h1>Preview:</h1>
                     {
                       preview ? (
-                        <div dangerouslySetInnerHTML={{ __html: preview }} />
+                        <div style={{ height: '200px' }} dangerouslySetInnerHTML={{ __html: preview }} />
                       ) : (
                         <div className="text-danger">Nenhum ícone</div>
                       )
                     }
                   </div>
                   {download.url && <Button href={download.url} download={download.filename} variant="success">Download</Button>}
+                </Col>
+                <Col className="h-100" md="10" lg="8" xl="5">
+                  <div className="mb-4">
+                    <h1>Código:</h1>
+                    {
+                      preview ? (
+                        <code style={{ display: 'block', height: '200px', overflow: 'hidden scroll' }}>{preview}</code>
+                      ) : (
+                        <div className="text-danger">Nenhum ícone</div>
+                      )
+                    }
+                  </div>
+                  {
+                    download.url && (
+                      <Button onClick={() => navigator.clipboard.writeText(preview)} variant="success">Copiar</Button>
+                    )
+                  }
                 </Col>
               </Row>
             </Col>
