@@ -28,7 +28,7 @@ export default function Home() {
     setDownload({ url: blobURL, filename: `${icon.value}-${variant.value}.svg` });
   }
 
-  const variants = ['Solid', 'Regular', 'Light', 'Thin', 'Duotone'];
+  const variants = ['Solid', 'Regular', 'Light', 'Thin', 'Duotone', 'Sharp-Light', 'Sharp-Regular', 'Sharp-Solid'];
 
   return (
     <>
@@ -64,7 +64,7 @@ export default function Home() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Ícone</Form.Label>
+                  <Form.Label>Nome do Ícone</Form.Label>
                   <Form.Control required type="text" placeholder="Ícone" />
                 </Form.Group>
 
